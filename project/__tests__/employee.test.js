@@ -1,24 +1,23 @@
-// Arrange Act Assert
+// We set up our test by importing in the files we're testing for.
+const Employee = require("../lib/employee");
 
-// when you create a test, the focus is to test Functionality
-// unit test
+// construct the test
+describe("Tests to see if employee class exists", () => {
+  it("should be an object", () => {
+    //Arrange
+    //I don't really have something to compare to
+    //Act
+    const employeeObject = new Employee();
+    //assert
+    expect(typeof employeeObject).toBe("object");
+  });
 
-const Algo = require("../index");
-
-describe("string reversal", () => {
-  describe("did it reverse", () => {
-    it("should reverse a given string"),
-      () => {
-        // arrange
-        // where you set your variables
-        const inputVariable = "hello";
-        const outputVariable = "olleh";
-        // act
-        const theObjectItself = new index();
-        const result = theObjectItself.reverse(inputVariable);
-
-        // assert
-        expect(result).toEqual(outputVariable);
-      };
+  it("should take in a name", () => {
+    // Arrange
+    const name = "Jules";
+    // Act
+    const employeeObject = new Employee("Jules");
+    // Assert
+    expect(employeeObject.name).toBe(name);
   });
 });
