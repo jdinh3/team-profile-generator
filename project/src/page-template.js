@@ -1,23 +1,3 @@
-const html = [];
-
-html.push(
-  team
-    .filter((employee) => employee.getRole() === "Manager")
-    .map((manager) => generateManager(manager))
-);
-html.push(
-  team
-    .filter((employee) => employee.getRole() === "Engineer")
-    .map((engineer) => generateEngineer(engineer))
-    .join("")
-);
-html.push(
-  team
-    .filter((employee) => employee.getRole() === "Intern")
-    .map((intern) => generateIntern(intern))
-    .join("")
-);
-
 const generateTeam = (team) => {
   const generateManager = (manager) => {
     return `
@@ -27,7 +7,7 @@ const generateTeam = (team) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${manager.getId()}</li>
-      <li class="list-group-item">Email:<a href="mailto: ${manager.getEmail()}"></a></li>
+      <li class="list-group-item">Email:<a href="mailto: ${manager.getEmail()}">${manager.getEmail()}</a></li>
       <li class="list-group-item">Office Number: ${manager.getOfficeNum()}</li>
     </ul>
   `;
@@ -41,8 +21,8 @@ const generateTeam = (team) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${engineer.getId()}</li>
-      <li class="list-group-item">Email:<a href="mailto: ${engineer.getEmail()}"></a></li>
-      <li class="list-group-item">GitHub: <href="${engineer.getEmail()}"></li>
+      <li class="list-group-item">Email:<a href="mailto: ${engineer.getEmail()}">${engineer.getEmail()}</a></li>
+      <li class="list-group-item">GitHub: <href="${engineer.getGithub()}">${engineer.getGithub()}</li>
     </ul>
   `;
   };
@@ -55,11 +35,30 @@ const generateTeam = (team) => {
     </div>
     <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${intern.getId()}</li>
-      <li class="list-group-item">Email:<a href="mailto: ${intern.getEmail()}"></a></li>
+      <li class="list-group-item">Email:<a href="mailto: ${intern.getEmail()}">${intern.getEmail()}</a></li>
       <li class="list-group-item">School: ${intern.getSchool()}</li>
     </ul>
   `;
   };
+
+  const html = [];
+
+  html.push(
+    team
+      .filter((employee) => employee.getRole() === "Manager")
+      .map((manager) => generateManager(manager))
+  );
+  html.push(
+    team
+      .filter((employee) => employee.getRole() === "Engineer")
+      .map((engineer) => generateEngineer(engineer))
+  );
+  html.push(
+    team
+      .filter((employee) => employee.getRole() === "Intern")
+      .map((intern) => generateIntern(intern))
+  );
+  return html.join("");
 };
 
 module.exports = (team) => {
@@ -77,11 +76,11 @@ module.exports = (team) => {
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="dist/style.css" />
+    <link rel="stylesheet" href="../style.css"/>
   </head>
   <body>
     <h1>My Team</h1>
-    <div class="card" style="width: 18rem">
+    <div class="card d-flex justify-content-center" style="width: 18rem">
     ${generateTeam(team)}
     </div>
     <script

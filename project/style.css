@@ -1,0 +1,11 @@
+h1 {
+    color: white;
+    background-color: rgb(231, 54, 54);
+    text-align: center;
+    padding: 40px;
+}
+
+.card-body {
+    background-color: rgb(23, 88, 230);
+    color: white;
+}
